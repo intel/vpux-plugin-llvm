@@ -107,7 +107,7 @@ jobs:
       uses: llvm/actions/install-ninja@22e9f909d35b50bd1181709564bfe816eaeaae81 # main
 
     - name: Setup sccache
-      uses: hendrikmuhs/ccache-action@ca3acd2731eef11f1572ccb126356c2f9298d35e # v1.2.9
+      uses: hendrikmuhs/ccache-action@ed74d11c0b343532753ecead8a951bb09bb34bc9 # v1.2.14
       with:
         max-size: 250M
         key: sccache-${{ runner.os }}-release
@@ -127,14 +127,14 @@ jobs:
         tar -C /mnt/ -c build/ | zstd -T0 -c > build.tar.zst
 
     - name: Upload Stage 1 Source
-      uses: actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5 #v3.2.1
+      uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 #v4.4.3
       with:
         name: stage1-source
         path: llvm-project.tar.zst
         retention-days: 2
 
     - name: Upload Stage 1 Build Dir
-      uses: actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5 #v3.2.1
+      uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 #v4.4.3
       with:
         name: stage1-build
         path: build.tar.zst
@@ -157,7 +157,7 @@ jobs:
       uses: llvm/actions/install-ninja@22e9f909d35b50bd1181709564bfe816eaeaae81 # main
 
     - name: Download Stage 1 Artifacts
-      uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
       with:
         pattern: stage1-*
         merge-multiple: true
@@ -182,14 +182,14 @@ jobs:
         tar -C /mnt/ -c build/ | zstd -T0 -c > build.tar.zst
 
     - name: Upload Stage 2 Source
-      uses: actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5 #v3.2.1
+      uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 #v4.4.3
       with:
         name: stage2-source
         path: ${{ github.workspace }}/llvm-project.tar.zst
         retention-days: 2
 
     - name: Upload Stage 2 Build Dir
-      uses: actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5 #v3.2.1
+      uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 #v4.4.3
       with:
         name: stage2-build
         path: ${{ github.workspace }}/build.tar.zst
@@ -215,7 +215,7 @@ jobs:
       uses: llvm/actions/install-ninja@22e9f909d35b50bd1181709564bfe816eaeaae81 # main
 
     - name: 'Download artifact'
-      uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
       with:
         pattern: stage2-*
         merge-multiple: true
@@ -238,7 +238,7 @@ jobs:
         echo "filename=$filename" >> $GITHUB_OUTPUT
         echo "path=/mnt/build/tools/clang/stage2-bins/$filename" >> $GITHUB_OUTPUT
 
-    - uses: actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5 #v3.2.1
+    - uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 #v4.4.3
       if: always()
       with:
         name: release-binary
@@ -257,14 +257,14 @@ jobs:
         tar -C /mnt/ -c build/ | zstd -T0 -c > build.tar.zst
 
     - name: Upload Stage 3 Source
-      uses: actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5 #v3.2.1
+      uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 #v4.4.3
       with:
         name: stage3-source
         path: llvm-project.tar.zst
         retention-days: 2
 
     - name: Upload Stage 3 Build Dir
-      uses: actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5 #v3.2.1
+      uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 #v4.4.3
       with:
         name: stage3-build
         path: build.tar.zst
@@ -287,7 +287,7 @@ jobs:
         egress-policy: audit
 
     - name: 'Download artifact'
-      uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
       with:
         name: release-binary
 
@@ -318,7 +318,7 @@ jobs:
       uses: llvm/actions/install-ninja@22e9f909d35b50bd1181709564bfe816eaeaae81 # main
 
     - name: 'Download artifact'
-      uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
       with:
         pattern: stage3-*
         merge-multiple: true
