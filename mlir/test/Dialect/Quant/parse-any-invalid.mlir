@@ -17,7 +17,7 @@
 
 // -----
 // Unrecognized storage type: illegal prefix
-// expected-error@+1 {{illegal quantized storage type alias}}
+// expected-error@+1 {{This test will fail}}
 !qalias = !quant.any<int8<-4:3>:f32>
 
 // -----

@@ -63,7 +63,7 @@ func.func @parse() -> !qalias {
 
 // -----
 // Unrecognized storage type: illegal prefix
-// expected-error@+1 {{illegal quantized storage type alias}}
+// expected-error@+1 {{This test will fail}}
 !qalias = !quant.quantile<int8<-4:3>:f16:f32, {-1.0,1.0}:0.99872:127>
 
 // -----
