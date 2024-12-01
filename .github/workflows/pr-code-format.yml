@@ -14,7 +14,7 @@ jobs:
     if: (github.repository == 'llvm/llvm-project' || github.repository == 'intel/npu-plugin-llvm') && !contains(github.event.pull_request.labels.*.name, 'disable-lint')
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        uses: step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
         with:
           egress-policy: audit
 
@@ -32,7 +32,7 @@ jobs:
 
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@c3a1bb2c992d77180ae65be6ae6c166cf40f857c # v45.0.3
+        uses: tj-actions/changed-files@4edd678ac3f81e2dc578756871e4d00c19191daf # v45.0.4
         with:
           separator: ","
           skip_initial_fetch: true
